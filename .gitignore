@@ -26,6 +26,7 @@ yarn-error.log*
 # Build Files
 dist/
 build/
+INFOS.md
 
 # Environment Files
 .env

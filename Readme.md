@@ -1,6 +1,4 @@
 
-
-
 1- Front End backend ordner erstellt 
 2- react install für front end 
 3 - node install für haupt ordner 
