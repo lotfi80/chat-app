@@ -49,5 +49,9 @@ message controller erstellt
 
 32 - paar einzele Conversation in der Component Conversations eingepackt und avatr von Daisy UI 
 
+33-routes erstellt für login signu home 
+
+34- input für signup functions erstellt auch für  checkbox gender 
+
 
 
