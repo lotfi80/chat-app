@@ -25,4 +25,11 @@ openssl rand -base64 32 => checken der tocken secret und erstellt eins dann kopi
 message controller erstellt 
 18- middelware ordner ertsllt mit protectRoute damit wir checken obder user den tocken hat und ob er berächtigt in die massge route 
 19 coockie parser damit protectRoute kann zugrefien in der cookie der token und vergleichen 
-20-
+20- users router erstellt 
+21- user.controllers erstellt to get all users online expeting me for the sidebar 
+
+22 ### time to work on the front end folder 
+ - to do for the backend later putting the soket IO for the real time messages
+
+ 23 - installed tailwind and daisy UI 
+
