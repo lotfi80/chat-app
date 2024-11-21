@@ -32,4 +32,22 @@ message controller erstellt
  - to do for the backend later putting the soket IO for the real time messages
 
  23 - installed tailwind and daisy UI 
+ 24- in "src" ordner ein ordner "pages" erstellt 
+ 25 im pages ordner 3 ordnern erstellen "login" "signup" and "home" in jeweils 
+ eine datei login signup und home erstellt 
+
+ 26- die login seite erstellt und bearbeitet danach signup ( jedes male in app.jsx ein compoenent erstellen Login bearbeiten , wenn fertig auskommentieren von app.jsx und erstelle der nächte )
+
+ 27 in signup odrner eine GenderCheckbox.jsx erstellt wo ich habe die component checkbox für register 
+  18- Home page erstellen bearbeiten in home ordner 
+
+  29- in component ein ordner sidebar => mit 2 datein Sidebar und SearchInput 
+   
+30 icons holen react icons für search 
+
+31 Conversation und Conversations erstellt 
+
+32 - paar einzele Conversation in der Component Conversations eingepackt und avatr von Daisy UI 
+
+
 

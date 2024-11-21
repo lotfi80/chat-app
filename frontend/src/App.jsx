@@ -1,15 +1,20 @@
+// import Login from "./pages/login/Login";
+import Home from "./pages/home/Home";
+// import Signup from "./pages/signup/Signup";
 
 
 function App() {
-
   return (
     <>
-<button className="btn btn-outline">Default</button>
-<button className="btn btn-outline btn-primary">Primary</button>
-<button className="btn btn-outline btn-secondary">Secondary</button>
-<button className="btn btn-outline btn-accent">Accent</button>      
+      <div className="p-4 h-screen flex items-center justify-center text-white">
+      {/* <Login /> */}
+      {/* <Signup /> */}
+      <Home />
+        
+        
+      </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
