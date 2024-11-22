@@ -1,23 +1,26 @@
 import GenderCheckBox from "./GenderCheckBox"
 import { Link } from "react-router-dom"
 import { useState } from "react"
+import useSignup from "../../Hooks/useSignup"
 
 const Signup = () => {
       const [inputs , setInputs] = useState({
             fullName: '',
-            userName: '',
+            username: '',
             password: '',
             confirmPassword: '',
             gender : ''
       })
+     const {loading, signup}= useSignup()
       const handleCheckBoxChange= (gender)=>{
             setInputs({...inputs,gender})
 
       }
-      const handleSubmit = (e) => {
+      const handleSubmit = async (e) => {
             e.preventDefault()
-            console.log(inputs)
-      }
+            await signup(inputs)
+
+      } 
   return (
     <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
       <div className="w-full p-6 rounded.lg shadow-md bg-gray-400 bg-clip-padding backdrop-filter
@@ -46,8 +49,8 @@ const Signup = () => {
                         <input type="text" 
                         placeholder="Enter User Name"
                         className="w-full input input-bordered h-10 text-black "
-                        value ={inputs.userName} 
-                        onChange={(e) => setInputs({...inputs , userName: e.target.value})}
+                        value ={inputs.username} 
+                        onChange={(e) => setInputs({...inputs , username: e.target.value})}
                         />
 
                   </div>
@@ -79,7 +82,13 @@ const Signup = () => {
            Already have an account? Login
           </Link>
           <div>
-            <button className="btn btn-block btn-sm  mt-2">Signup</button>
+            <button className="btn btn-block btn-sm  mt-2  border-slate-700"
+            disabled={loading}
+            >
+                  {loading ? <span className="loading loading-spinner"></span>: "Signup"}
+     
+                  
+                  </button>
           </div>
 
             </form>

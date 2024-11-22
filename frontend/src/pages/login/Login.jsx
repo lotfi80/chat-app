@@ -1,7 +1,20 @@
 import { Link } from "react-router-dom"
+import { useState } from "react"
+import useLogin from "../../Hooks/useLogin";
 
 
 const Login = () => {
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+
+  const {login , loading} = useLogin()
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    await login({username, password})
+    
+  }
+
   return (
     <div
       className="flex flex-col items-center justify-center
@@ -16,7 +29,9 @@ const Login = () => {
             Login
             <span className="text-blue-500"> ChatApp</span>
         </h1>
-        <form action="">
+        <form action=""
+         onSubmit={handleSubmit}
+        >
           <div>
             <label htmlFor="" className="label p-2">
               <span className="text-base label-text">Username</span>
@@ -24,7 +39,10 @@ const Login = () => {
             <input
               type="text"
               placeholder="Enter username"
-              className="input input-bordered w-full h-10" ></input>
+              className="input input-bordered w-full h-10 text-black"
+              value={username} 
+              onChange={(e) => setUsername(e.target.value)}
+            ></input>
 
           </div>
           <div>
@@ -34,13 +52,20 @@ const Login = () => {
             <input
               type="text"
               placeholder="Enter password"
-              className="input input-bordered w-full h-10" ></input>
+              className="input input-bordered w-full h-10 text-black"
+              value={password} 
+              onChange={(e) => setPassword(e.target.value)}
+              ></input>
           </div>
           <Link to='/signup' className="text-sm hover:underline hover:text-blue-600 mt-2 inline-block ">
            { "Don't"} have an account? Signup
           </Link>
           <div>
-            <button className="btn btn-block btn-sm  mt-2">Login</button>
+            <button className="btn btn-block btn-sm  mt-2"
+            disabled={loading}
+            >
+              {loading ? <span className="loading loading-spinner"></span> : 'Login'}
+            </button>
           </div>
 
         </form>

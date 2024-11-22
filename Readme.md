@@ -53,5 +53,18 @@ message controller erstellt
 
 34- input für signup functions erstellt auch für  checkbox gender 
 
+35- Context ordner ertsllt mit AuthContext 
+
+Hokks erstellt für signup logout login
+
+36- Logout page im front end 
+
+37- Login page im front end 
+
+38- Signup Login logout are in place . working and authentification by loggout cleaned by login set up in localestorage 
+
+
+
+
 
 

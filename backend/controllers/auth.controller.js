@@ -5,9 +5,17 @@ import generateTokenAndSetCookie from "../utils/generateToken.js";
 export const signupUser = async (req, res) => {
   try {
     const { fullName, username, password, confirmPassword, gender } = req.body;
+    if (!fullName || !username || !password || !confirmPassword || !gender) {
+      return res.status(400).json({ message: "Please fill all fields." });
+    }
     if (password !== confirmPassword) {
       return res.status(400).json({ message: "passwords do not match" });
     }
+    const userExists = await User.findOne({ username });
+    if (userExists) {
+      return res.status(400).json({ message: "User already exists" });
+    }
+    
     const user = await User.findOne({ username });
     if (user) {
       return res.status(400).json({ message: "user already exists" });
@@ -33,7 +41,12 @@ export const signupUser = async (req, res) => {
       // Generate a JWT token
       generateTokenAndSetCookie(newUser._id, res);
       await newUser.save();
-      res.status(201).json({ user: newUser });
+      res.status(201).json({ 
+        _id: newUser._id,
+        fullName: newUser.fullName,
+        username: newUser.username,
+        profilePicture: newUser.profilePicture
+       });
     }
   } catch (err) {
     console.log("Error in signup route ", err);
