@@ -1,23 +1,46 @@
-import { BsSend } from 'react-icons/bs'
+import { BsSend } from "react-icons/bs";
+import { useState } from "react";
+import useSendMessage from "../../Hooks/useSendMessage";
 const MessagesInput = () => {
+  const [message, setMessage] = useState("");
+  const { loading, sendMessage } = useSendMessage();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!message) return;
+
+    try {
+      await sendMessage(message);
+      setMessage("");
+    } catch (error) {
+      console.error("Fehler beim Senden der Nachricht:", error);
+    }
+  };
   return (
-<form action=""
-className="px-4 my-3">
+    <form action="" className="px-4 my-3" onSubmit={handleSubmit}>
       <div className="w-full relative">
-            <input type="text"
-            className="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 text-white"
-            placeholder="Send a message..." />
-            <button type="submit" className="absolute inset-y-0 end-0 flex items-center pe-3">
-                  <BsSend/>
-
-            </button>
-            
+        <input
+          type="text"
+          className="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 text-white"
+          placeholder="Send a message..."
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+        />
+        <button
+          type="submit"
+          className="absolute inset-y-0 end-0 flex items-center pe-3"
+        >
+          {loading ? (
+            <div className="loading loading-spinner "></div>
+          ) : (
+            <BsSend />
+          )}
+        </button>
       </div>
+    </form>
+  );
+};
 
-</form>  )
-}
-
-export default MessagesInput
+export default MessagesInput;
 
 // // STARTER CODE
 
@@ -34,7 +57,7 @@ export default MessagesInput
 //                   <BsSend/>
 
 //             </button>
-            
+
 //       </div>
 
 // </form>  )

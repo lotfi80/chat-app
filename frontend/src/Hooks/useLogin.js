@@ -21,8 +21,10 @@ const useLogin = () => {
                    headers: {
                          "Content-Type": "application/json",
                    },
+                   credentials: "include",
                    body: JSON.stringify({username,password})
              })
+             
              if(!res.ok){
                    const errorMessage = await res.text()
                    throw new Error(errorMessage || "An error occurred while logging in.")
