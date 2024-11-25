@@ -1,7 +1,7 @@
 import Conversation from "../models/conversation.model.js";
 import Message from "../models/message.model.js";
 import mongoose from "mongoose";
-
+import { getReceiverSocketId, io } from "../socket/socket.js";
 
 export const sendMessage = async (req, res) => {
   try {
@@ -50,12 +50,15 @@ export const sendMessage = async (req, res) => {
     if (newMessage) {
       conversation.messages.push(newMessage._id);
     }
-
-
-    // SOKET IO functionality to be added here
-
     // await conversation.save();
     await Promise.all([conversation.save(), newMessage.save()]);
+
+    // SOKET IO functionality to be added here
+    const receiverSocketId = getReceiverSocketId(receiverId);
+    if (receiverSocketId) {
+      // Emit the new message to the receiver for specific user
+      io.to(receiverSocketId).emit("newMessage", newMessage);
+    }
 
     res.status(201).json(newMessage);
   } catch (err) {
@@ -65,22 +68,19 @@ export const sendMessage = async (req, res) => {
 };
 
 export const getMessages = async (req, res) => {
-      try{
-
-   const {id : userToChatId} = req.params;
-   const senderId = req.user._id;
-   const conversation = await Conversation.findOne({
-      participants : {$all: [senderId, userToChatId]}
-   }).populate("messages"); // populate the messages field of the conversation
-   if (!conversation) {
+  try {
+    const { id: userToChatId } = req.params;
+    const senderId = req.user._id;
+    const conversation = await Conversation.findOne({
+      participants: { $all: [senderId, userToChatId] },
+    }).populate("messages"); // populate the messages field of the conversation
+    if (!conversation) {
       return res.status(200).json({ messages: [] });
-      }
-      const messages = conversation.messages;
-   res.status(200).json(messages);
-
-      }
-      catch (err) {
-            console.error("Error in sendMessage controller: ", err);
-            res.status(500).json({ message: "Internal server error" });
-      }
+    }
+    const messages = conversation.messages;
+    res.status(200).json(messages);
+  } catch (err) {
+    console.error("Error in sendMessage controller: ", err);
+    res.status(500).json({ message: "Internal server error" });
+  }
 };
