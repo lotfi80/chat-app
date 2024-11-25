@@ -28,10 +28,25 @@ const __dirname = path.resolve();
 //   })
 // );
 
+// app.use(
+//   cors({
+//     origin: (origin, callback) => {
+//       const allowedOrigins = ["http://localhost:5001"];
+//       if (!origin || allowedOrigins.includes(origin)) {
+//         return callback(null, true);
+//       }
+//       callback(new Error("CORS not allowed"));
+//     },
+//     credentials: true,
+//   })
+// );
 app.use(
   cors({
     origin: (origin, callback) => {
-      const allowedOrigins = ["http://localhost:5001"];
+      const allowedOrigins = [
+        "http://localhost:5001", 
+        "https://chat-app-production-zyr2.onrender.com", // deployed frontend
+      ];
       if (!origin || allowedOrigins.includes(origin)) {
         return callback(null, true);
       }
@@ -40,6 +55,7 @@ app.use(
     credentials: true,
   })
 );
+
 
 app.use(express.json()); // to parse the incoming request with JSON payloads
 app.use(cookieParser()); // to parse the incoming cookies
