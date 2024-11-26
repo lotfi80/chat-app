@@ -8,7 +8,7 @@ const useLogout = () => {
   const logout = async () => {
     setLoading(true);
     try{
-      const res = await fetch("http://localhost:5001/api/auth/logout", {
+      const res = await fetch("https://chat-app-production-zyr2.onrender.com/api/auth/logout", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

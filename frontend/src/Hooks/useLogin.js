@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { useAuthContext } from "../context/AuthContext";
 import toast from "react-hot-toast";
-import dotenv from "dotenv";
-dotenv.config();
 
 
 const useLogin = () => {
@@ -18,9 +16,8 @@ const useLogin = () => {
           if (!succes) return;
        setLoading(true)
        try{
-            const baseUrl = process.env.REACT_APP_BASE_URL;
-            const res = await fetch(`${baseUrl}/api/auth/login`, {
-                  method: "POST",
+             const res = await fetch("https://chat-app-production-zyr2.onrender.com/api/auth/login",{
+                   method: "POST",
                    headers: {
                          "Content-Type": "application/json",
                    },

@@ -11,7 +11,7 @@ const useGetConversations = () => {
     const getconversations = async () => {
       setLoading(true);
       try {
-        const res = await fetch("http://localhost:5001/api/users/", {
+        const res = await fetch("https://chat-app-production-zyr2.onrender.com/api/users/", {
             method: "GET",
             
             credentials: "include",
