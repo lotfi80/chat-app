@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useAuthContext } from "../context/AuthContext";
 import toast from "react-hot-toast";
+import dotenv from "dotenv";
+dotenv.config();
 
 
 const useLogin = () => {
@@ -16,8 +18,9 @@ const useLogin = () => {
           if (!succes) return;
        setLoading(true)
        try{
-             const res = await fetch("http://localhost:5001/api/auth/login",{
-                   method: "POST",
+            const baseUrl = process.env.REACT_APP_BASE_URL;
+            const res = await fetch(`${baseUrl}/api/auth/login`, {
+                  method: "POST",
                    headers: {
                          "Content-Type": "application/json",
                    },
