@@ -11,7 +11,9 @@ const useGetMessages = () => {
       setLoading(true);
       try {
         const response = await fetch(
-          `http://localhost:5001/api/messages/${selectedConversation._id}`, {
+          // `http://localhost:5001/api/messages/${selectedConversation._id}`, {
+            `https://chat-app-production-zyr2.onrender.com/api/messages/${selectedConversation._id}`, {
+
             method: "GET",
             
             credentials: "include",

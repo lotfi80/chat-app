@@ -9,8 +9,10 @@ const useSendMessage = () => {
 
       const sendMessage = async (message) => {
             try{
-                  const res = await fetch(`http://localhost:5001/api/messages/send/${selectedConversation._id}`, {
-                        method: 'POST',
+                  // const res = await fetch(`http://localhost:5001/api/messages/send/${selectedConversation._id}`, {
+
+                  const res = await fetch(`https://chat-app-production-zyr2.onrender.com/api/messages/send/${selectedConversation._id}`, {
+                  method: 'POST',
                         
 
                         headers: {

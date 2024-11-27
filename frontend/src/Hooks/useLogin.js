@@ -16,7 +16,9 @@ const useLogin = () => {
           if (!succes) return;
        setLoading(true)
        try{
-             const res = await fetch("https://chat-app-production-zyr2.onrender.com/api/auth/login",{
+            //  const res = await fetch("http://localhost:5001/api/auth/login",{
+       const res = await fetch("https://chat-app-production-zyr2.onrender.com/api/auth/login",{
+
                    method: "POST",
                    headers: {
                          "Content-Type": "application/json",
