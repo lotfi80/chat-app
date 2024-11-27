@@ -50,7 +50,7 @@ const Login = () => {
               <span className="text-base label-text">Password</span>
             </label>
             <input
-              type="text"
+              type="password"
               placeholder="Enter password"
               className="input input-bordered w-full h-10 text-black"
               value={password} 
